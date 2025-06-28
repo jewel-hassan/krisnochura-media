@@ -1,51 +1,129 @@
+/* Box sizing reset */
 * {
   box-sizing: border-box;
 }
-/* Header layout */
-.header {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 20px;
-}
 
-.logo {
-  width:200px;
-  height: 200px;
-  object-fit: contain;
-}
-
-/* মোবাইলে টাইটেল নিচে, লোগো উপরে */
-@media (max-width: 600px) {
-  .header {
-    flex-direction: column;
-  }
-
-  .header h1 {
-    font-size: 20px;
-    text-align: center;
-  }
-}
-
+/* Animated Gradient Background */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f1f1f1;
+  background: linear-gradient(270deg, #ffecd2, #fcb69f, #a1c4fd, #c2e9fb);
+  background-size: 800% 800%;
+  animation: aurora 15s ease infinite;
 }
 
+@keyframes aurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Container & Header */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
 
-h1 {
-  text-align: center;
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
+.logo {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+/* Title */
+h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.team-image {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.team-member-wrapper {
+  position: relative;
+  width: 126px; /* 120px + 3px * 2 */
+  height: 126px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-member-wrapper::before {
+  content: "";
+  position: absolute;
+  width: 126px;
+  height: 126px;
+  border-radius: 50%;
+background: conic-gradient(
+  from 0deg,
+  #00c6ff,
+  #0072ff,
+  #6a11cb,
+  #2575fc,
+  #00c6ff
+);
+
+  animation: spin 3s linear infinite;
+  z-index: -1;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.team-member {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid white;
+  background-color: white;
+  box-shadow: 0 0 3px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.team-member:hover {
+  transform: scale(1.05);
+}
+
+/* মোবাইলের জন্য responsive */
+@media (max-width: 600px) {
+  .team-member-wrapper {
+    width: 90px;
+    height: 90px;
+  }
+
+  .team-member-wrapper::before {
+    width: 90px;
+    height: 90px;
+  }
+
+  .team-member {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+
+/* Form Inputs */
 input, button {
   width: 100%;
   padding: 12px;
@@ -53,18 +131,37 @@ input, button {
   font-size: 16px;
 }
 
+/* Submit Button */
 button {
   background-color: #ff0000;
   color: white;
   border: none;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s;
 }
 
 button:hover {
   background-color: #cc0000;
 }
 
+/* Refresh Button */
+.refresh-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 12px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.refresh-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Video Section */
 #videoContainer {
   display: flex;
   flex-wrap: wrap;
@@ -77,10 +174,41 @@ button:hover {
   padding: 10px;
   border-radius: 8px;
   width: 100%;
-  box-shadow: 0 0 8px rgba(0,0,0,0.1);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Desktop: show 2 or 3 per row */
+.video-card iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 6px;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+  }
+
+  .header h1 {
+    font-size: 20px;
+  }
+
+  .team-member {
+    width: 80px;
+    height: 80px;
+  }
+
+  .team-member::before {
+    width: 90px;
+    height: 90px;
+  }
+
+  .video-card iframe {
+    height: 180px;
+  }
+}
+
 @media (min-width: 768px) {
   .video-card {
     width: 48%;
@@ -93,16 +221,3 @@ button:hover {
   }
 }
 
-.video-card iframe {
-  width: 100%;
-  height: 200px;
-  border: none;
-  border-radius: 6px;
-}
-
-/* Mobile height smaller */
-@media (max-width: 600px) {
-  .video-card iframe {
-    height: 180px;
-  }
-}
