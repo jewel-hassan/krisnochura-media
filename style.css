@@ -84,6 +84,47 @@ background: conic-gradient(
   z-index: -1;
 }
 
+/* সার্চ ইনপুটের চারপাশে সুন্দর প্যাডিং */
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+/* ইনপুট ফিল্ড স্টাইল */
+#searchInput {
+  width: 100%;
+  max-width: 500px;
+  padding: 12px 18px;
+  font-size: 16px;
+  border: 2px solid #ccc; /* হালকা ধূসর বর্ডার */
+  border-radius: 30px; /* বৃত্তাকার কোণ */
+  outline: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* হালকা ছায়া */
+  transition: all 0.3s ease;
+}
+
+/* ইনপুটে ক্লিক করলে হাইলাইট */
+#searchInput:focus {
+  border-color: #ff5722; /* কমলা হাইলাইট */
+  box-shadow: 0 0 8px rgba(255, 87, 34, 0.5);
+}
+
+/* প্লেসহোল্ডার স্টাইল */
+#searchInput::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+/* মোবাইলের জন্য ছোট ইনপুট */
+@media (max-width: 600px) {
+  #searchInput {
+    font-size: 14px;
+    padding: 10px 16px;
+  }
+}
+
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

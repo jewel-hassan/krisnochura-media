@@ -31,6 +31,12 @@
                 </div>
             </div>
 
+            <!-- 🔍 সার্চ ইনপুট -->
+            <div class="search-wrapper">
+                <input type="text" id="searchInput" placeholder="🔍 ভিডিও খুঁজুন..." oninput="searchVideos()" />
+            </div>
+
+
 
 
         </div>
@@ -41,6 +47,28 @@
         <div id="videoContainer"></div>
     </div>
 
+
+    <script>
+        function searchVideos() {
+            const input = document.getElementById("searchInput").value.trim().toLowerCase();
+
+            const convertedInput = phoneticToBangla(input); // phonetic থেকে বাংলা
+
+            const allCards = document.querySelectorAll(".video-card");
+
+            allCards.forEach(card => {
+                const cardText = card.textContent.toLowerCase();
+                if (cardText.includes(input) || cardText.includes(convertedInput)) {
+                    card.style.display = "block";
+                } else {
+                    card.style.display = "none";
+                }
+            });
+        }
+
+
+    </script>
+    <script src="phoneticMap.js"></script>
     <script src="script.js"></script>
 </body>
 
